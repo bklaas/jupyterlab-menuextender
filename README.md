@@ -1,4 +1,4 @@
-# jupyterlab-menuextender
+# @bklaas/jupyterlab-menuextender
 
 A JupyterLab extension to allow custom additions to menus
 
@@ -10,7 +10,7 @@ A JupyterLab extension to allow custom additions to menus
 ## Installation
 
 ```bash
-jupyter labextension install jupyterlab-menuextender
+jupyter labextension install @bklaas/jupyterlab-menuextender
 ```
 
 ## Development

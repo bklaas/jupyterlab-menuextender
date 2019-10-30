@@ -1,5 +1,5 @@
 {
-  "name": "jupyterlab-menuextender",
+  "name": "@bklaas/jupyterlab-menuextender",
   "version": "0.1.0",
   "description": "A JupyterLab extension to allow custom additions to menus",
   "keywords": [
