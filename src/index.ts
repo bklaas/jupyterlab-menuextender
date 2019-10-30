@@ -1,20 +1,16 @@
 // Distributed under the terms of the Modified BSD License.
 
-/*
-import {
-  Menu
-} from '@phosphor/widgets';
-*/
-
 import {
   IFrame, MainAreaWidget, WidgetTracker, ICommandPalette
 } from '@jupyterlab/apputils';
 
 import {
-  JupyterFrontEnd, JupyterFrontEndPlugin, ILayoutRestorer
+  ILayoutRestorer, JupyterFrontEnd, JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 
-import { IMainMenu } from '@jupyterlab/mainmenu';
+import {
+    IMainMenu
+} from '@jupyterlab/mainmenu';
 
 /**
  * The command IDs used by the plugin.
@@ -29,7 +25,7 @@ const HELP_CLASS = "jp-Help"
 const RESOURCES = [
   {
     text: 'ipums-metadata API docs',
-    url: 'https://pages.github.umn.edu/mpc/ipums-metadata/1.42.0/'
+    url: 'https://pages.github.umn.edu/mpc/ipums-metadata/1.43.0/'
   },
 ];
 
@@ -63,7 +59,10 @@ function newHelpWidget(url: string, text: string): MainAreaWidget<IFrame> {
 /**
  * Activate the jupyter-menuextender extension.
  */
-function activateMenuextenderExtension(app: JupyterFrontEnd, palette: ICommandPalette, mainMenu: IMainMenu): void {
+function activateMenuextenderExtension(app: JupyterFrontEnd,
+                                       palette: ICommandPalette,
+                                       mainMenu: IMainMenu,
+                                       restorer: ILayoutRestorer): void {
 
   const resourcesGroup = RESOURCES.map(args => ({
     args,
@@ -76,7 +75,6 @@ function activateMenuextenderExtension(app: JupyterFrontEnd, palette: ICommandPa
   const helpMenu = mainMenu.helpMenu;
 
   // Handle state restoration.
-/*
   if (restorer) {
     void restorer.restore(tracker, {
       command: CommandIDs.ipumsMetadata,
@@ -87,7 +85,6 @@ function activateMenuextenderExtension(app: JupyterFrontEnd, palette: ICommandPa
       name: widget => widget.content.url
     });
   }
-*/
   helpMenu.addGroup(resourcesGroup, 100);
 
   commands.addCommand(CommandIDs.ipumsMetadata, {
