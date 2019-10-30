@@ -12,6 +12,10 @@ import {
     IMainMenu
 } from '@jupyterlab/mainmenu';
 
+// get MENU_ITEMS dict from json file
+import json_data from "./resources.json";
+const MENU_ITEMS = json_data.menuextender_items;
+
 /**
  * The command IDs used by the plugin.
  */
@@ -22,14 +26,9 @@ namespace CommandIDs {
 const category = "Help"
 const HELP_CLASS = "jp-Help"
 
-const RESOURCES = [
-  {
-    text: 'ipums-metadata API docs',
-    url: 'https://pages.github.umn.edu/mpc/ipums-metadata/1.43.0/'
-  },
-];
 
-RESOURCES.sort((a: any, b: any) => {
+
+MENU_ITEMS.sort((a: any, b: any) => {
   return a.text.localeCompare(b.text);
 });
 
@@ -64,7 +63,7 @@ function activateMenuextenderExtension(app: JupyterFrontEnd,
                                        mainMenu: IMainMenu,
                                        restorer: ILayoutRestorer): void {
 
-  const resourcesGroup = RESOURCES.map(args => ({
+  const resourcesGroup = MENU_ITEMS.map(args => ({
     args,
     command: CommandIDs.ipumsMetadata
   }));
@@ -102,7 +101,7 @@ function activateMenuextenderExtension(app: JupyterFrontEnd,
 
   if (palette) {
     console.log("let's add some commands, shall we?")
-    RESOURCES.forEach(args => {
+    MENU_ITEMS.forEach(args => {
       palette.addItem({ args, command: CommandIDs.ipumsMetadata, category });
     });
   }
